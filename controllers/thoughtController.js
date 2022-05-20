@@ -47,9 +47,9 @@ module.exports = {
       .then((user) =>
         !user
           ? res.status(404).json({
-              message: 'Application created, but found no user with that ID'
+              message: 'thought created, but found no user with that ID'
             })
-          : res.json('Created the application 🎉')
+          : res.json({user})
       )
       .catch((err) => {
         console.log(err);

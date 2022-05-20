@@ -1,36 +1,13 @@
 const { ObjectId } = require('mongoose').Types;
 const { User, Thought } = require('../models');
 
-// Aggregate function to get the number of students overall
-const headCount = async () =>
-    User.aggregate()
-    .count('userCount')
-    .then((numberOfUsers) => numberOfUsers);
-
-// Aggregate function for getting the overall grade using $avg
-// const grade = async (studentId) =>
-//   User.aggregate([
-//     // only include the given student by using $match
-//     { $match: { _id: ObjectId(studentId) } },
-//     {
-//       $unwind: '$assignments',
-//     },
-//     {
-//       $group: {
-//         _id: ObjectId(studentId),
-//         overallGrade: { $avg: '$assignments.score' },
-//       },
-//     },
-//   ]);
-
 module.exports = {
   // Get all users
   getUsers(req, res) {
     User.find()
       .then(async (users) => {
         const userObj = {
-          users,
-          headCount: await headCount(),
+          users
         };
         return res.json(userObj);
       })
@@ -66,7 +43,7 @@ module.exports = {
 
   updateUser(req, res) {
     User.findOneAndUpdate(
-      { userId: req.params._id },
+      { _id: req.params.userId },
       { $set: req.body},
       {runValidators: true, new: true }
       )
@@ -83,7 +60,7 @@ module.exports = {
 
   // Delete a student and remove them from the course
   deleteUser(req, res) {
-    User.findOneAndRemove({ userId: req.params._id })
+    User.findOneAndRemove({ _id: req.params.userId })
       .then((user) =>
         !user
           ? res.status(404).json({ message: 'No such user exists' })

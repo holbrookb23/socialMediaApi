@@ -10,4 +10,8 @@ thoughts are attached to the user that created them and have a reaction count de
 
 ## walkthrough
 
-[!walkthough]
+### User Walkthrough
+[users](https://drive.google.com/file/d/1wzVAnKh1yPRLDAHnKBesBBa34NtDtI4_/view)
+
+### Thought Walkthrough
+[Thoughts](https://drive.google.com/file/d/1pXjNrz1ni3cbSuGbFYc2dSvwycAcEstS/view)
